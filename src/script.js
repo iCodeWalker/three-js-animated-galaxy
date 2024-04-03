@@ -2,6 +2,10 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import * as dat from "lil-gui";
 
+// import the shaders
+import galaxyVertexShader from "./shaders/galaxy/vertex.glsl";
+import galaxyFragmentShader from "./shaders/galaxy/fragment.glsl";
+
 /**
  * Base
  */
@@ -99,23 +103,8 @@ const generateGalaxy = () => {
     depthWrite: false,
     blending: THREE.AdditiveBlending,
     vertexColors: true,
-    vertexShader: `
-    void main() {
-        vec4 modelPosition = modelMatrix * vec4(position, 1.0);
-        vec4 viewPosition = viewMatrix * modelPosition;
-        vec4 projectionPosition = projectionMatrix * viewPosition;
-    
-        gl_Position = projectionPosition;
-    
-        gl_PointSize = 2.0;
-
-        // The paarticle size is 2x2 fragments size regardless of the distance of the camera
-    }
-    `,
-    fragmentShader: `
-    void main() {
-        gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
-    }`,
+    vertexShader: galaxyVertexShader,
+    fragmentShader: galaxyFragmentShader,
   });
 
   /**
