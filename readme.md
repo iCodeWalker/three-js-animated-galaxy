@@ -48,6 +48,11 @@
     3. Invert the value.
 
 10. Point Light Pattern :
+
     1. Get the distance between gl_PointCoord and the center.
     2. Invert the value.
     3. Apply a power on it with a high number.
+
+11. Handling Color :
+    1. To retrieve color attribute we need to access it in vertex shader.
+       attribute vec3 color;

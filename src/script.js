@@ -111,7 +111,7 @@ const generateGalaxy = () => {
   material = new THREE.ShaderMaterial({
     depthWrite: false,
     blending: THREE.AdditiveBlending,
-    vertexColors: true,
+    vertexColors: true, // if this is true than we dont need to access color attribute in vertex shader
     vertexShader: galaxyVertexShader,
     fragmentShader: galaxyFragmentShader,
     uniforms: {

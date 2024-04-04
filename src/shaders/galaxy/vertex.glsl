@@ -3,6 +3,12 @@ uniform float uSize;
 
 // retrieving aScale attribute 
 attribute float aScale;
+// retrieving color attribute 
+// attribute vec3 color;
+
+// Add vColor varying to send color to fragment shader
+varying vec3 vColor; 
+
 
 void main() {
     vec4 modelPosition = modelMatrix * vec4(position, 1.0);
@@ -20,5 +26,8 @@ void main() {
 
     // For size attenuation
     gl_PointSize *= (1.0 / -viewPosition.z);
+
+    // Assign color value to vColor
+    vColor = color;
 
 }
