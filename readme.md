@@ -29,3 +29,13 @@
     if(isPerspective) gl_PointSize\*= (scale / - mvPosition.z);
 
     mvPosition corresponds to the position of the vertex once the 'modelMatrix' and the 'viewMatrix' have been applied. In our case it 'viewPosition' variable
+
+7.  Drawing particle pattern
+
+    1. We are going to draw a pattern instead of the square particles.
+    2. We cannot send the uv as a varying because each vertex is a particle, but we can use gl_PointCoord
+
+8.  Making Disc Pattern :
+    1. Get the distance between gl_PointCoord and the center.
+    2. Apply a step function to get 0.0, if the distance is below 0.5, and 1.0 if the distance is above 0.5.
+    3. Invert the value
