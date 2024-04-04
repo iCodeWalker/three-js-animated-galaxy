@@ -18,4 +18,7 @@ void main() {
     // Multiply the uSize by aScale  to have random sizes of particles
     gl_PointSize = uSize * aScale;
 
+    // For size attenuation
+    gl_PointSize *= (1.0 / -viewPosition.z);
+
 }
