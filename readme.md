@@ -36,6 +36,18 @@
     2. We cannot send the uv as a varying because each vertex is a particle, but we can use gl_PointCoord
 
 8.  Making Disc Pattern :
+
     1. Get the distance between gl_PointCoord and the center.
     2. Apply a step function to get 0.0, if the distance is below 0.5, and 1.0 if the distance is above 0.5.
     3. Invert the value
+
+9.  Diffuse Point Pattern :
+
+    1. Get the distance between gl_PointCoord and the center.
+    2. Multiply it by 2.0, so it reaches 1.0 before touching the edge.
+    3. Invert the value.
+
+10. Point Light Pattern :
+    1. Get the distance between gl_PointCoord and the center.
+    2. Invert the value.
+    3. Apply a power on it with a high number.
