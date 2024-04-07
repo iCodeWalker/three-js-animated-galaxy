@@ -27,7 +27,7 @@ parameters.size = 0.005;
 parameters.radius = 5;
 parameters.branches = 3;
 parameters.spin = 1;
-parameters.randomness = 0.5;
+parameters.randomness = 0.2;
 parameters.randomnessPower = 3;
 parameters.insideColor = "#ff6030";
 parameters.outsideColor = "#1b3984";
@@ -53,6 +53,9 @@ const generateGalaxy = () => {
 
   // For randomness in size
   const scales = new Float32Array(parameters.count * 1);
+
+  // For randomness in particle
+  const randomness = new Float32Array(parameters.count * 3);
 
   const insideColor = new THREE.Color(parameters.insideColor);
   const outsideColor = new THREE.Color(parameters.outsideColor);
@@ -82,9 +85,14 @@ const generateGalaxy = () => {
       parameters.randomness *
       radius;
 
-    positions[i3] = Math.cos(branchAngle) * radius + randomX;
-    positions[i3 + 1] = randomY;
-    positions[i3 + 2] = Math.sin(branchAngle) * radius + randomZ;
+    // Randomness
+    randomness[i3 + 0] = randomX;
+    randomness[i3 + 1] = randomY;
+    randomness[i3 + 2] = randomZ;
+
+    positions[i3] = Math.cos(branchAngle) * radius;
+    positions[i3 + 1] = 0.0;
+    positions[i3 + 2] = Math.sin(branchAngle) * radius;
 
     // Color
     const mixedColor = insideColor.clone();
@@ -103,6 +111,11 @@ const generateGalaxy = () => {
 
   // add a new 'aScale' attribute
   geometry.setAttribute("aScale", new THREE.BufferAttribute(scales, 1));
+  // add 'aRandomness' attribute and remove 'position' attribute
+  geometry.setAttribute(
+    "aRandomness",
+    new THREE.BufferAttribute(randomness, 3)
+  );
 
   /**
    * Material

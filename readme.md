@@ -75,3 +75,7 @@
           float distanceToCenter = length(modelPosition.xz);
        6. Calculate offset angle : according to the time and distance how much the particle should spin.
           float angleOffset = (1.0 / distanceToCenter)*uTime*0.2;
+
+13. Fix Randomness of particle :
+
+    1. Remove the randomness from the 'position' attribute, save it in a new attribute named aRandomness, apply it after rotating the stars in the vertex shader.

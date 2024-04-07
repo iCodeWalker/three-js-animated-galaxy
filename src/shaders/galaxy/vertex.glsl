@@ -6,6 +6,9 @@ attribute float aScale;
 // retrieving color attribute 
 // attribute vec3 color;
 
+// randomness attribute
+attribute vec3 aRandomness;
+
 // Add vColor varying to send color to fragment shader
 varying vec3 vColor; 
 
@@ -29,6 +32,14 @@ void main() {
 
         modelPosition.x = cos(angle) * distanceToCenter;
         modelPosition.z = sin(angle) * distanceToCenter;
+
+    // Apply randomness after the spin
+    // modelPosition.x += aRandomness.x;
+    // modelPosition.y += aRandomness.y;
+    // modelPosition.z += aRandomness.z;
+
+    // OR
+    modelPosition.xyz += aRandomness;
 
     vec4 viewPosition = viewMatrix * modelPosition;
     vec4 projectionPosition = projectionMatrix * viewPosition;
