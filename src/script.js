@@ -116,6 +116,7 @@ const generateGalaxy = () => {
     fragmentShader: galaxyFragmentShader,
     uniforms: {
       uSize: { value: 20 * renderer.getPixelRatio() }, // set pixel ratio
+      uTime: { value: 0 }, // For time based animation
     },
   });
 
@@ -221,6 +222,9 @@ const clock = new THREE.Clock();
 
 const tick = () => {
   const elapsedTime = clock.getElapsedTime();
+
+  // update material
+  material.uniforms.uTime.value = elapsedTime;
 
   // Update controls
   controls.update();

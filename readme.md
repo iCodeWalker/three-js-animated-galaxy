@@ -54,5 +54,24 @@
     3. Apply a power on it with a high number.
 
 11. Handling Color :
+
     1. To retrieve color attribute we need to access it in vertex shader.
        attribute vec3 color;
+
+12. Animate :
+
+    1. Create a uTime uniform in uniforms.
+    2. Update the uTime in the tick function.
+    3. Retrieve it in the vertex shader.
+    4. As our galaxy looks flat, we can rotate the vertices only on the x and z.
+
+       1. We calculate the particle angle and its distance to the center.
+       2. We increase that angle according to the 'uTime' and the distance.
+       3. We update the position according to the new angle.
+
+       4. Retrieve angle using atan(...) function. atan => arc tangent.
+          float angle = atan(modelPosition.x, modelPosition.y);
+       5. Retrieve the distance using length(..)
+          float distanceToCenter = length(modelPosition.xz);
+       6. Calculate offset angle : according to the time and distance how much the particle should spin.
+          float angleOffset = (1.0 / distanceToCenter)*uTime*0.2;
